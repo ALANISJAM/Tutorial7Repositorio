@@ -117,20 +117,4 @@ D:\8vo\cosas de chacarron\direct\Include\xnamathvector.inl(1269,78): warning C48
 D:\8vo\cosas de chacarron\direct\Include\xnamathmisc.inl(518,43): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 D:\8vo\cosas de chacarron\direct\Include\xnamathmisc.inl(519,40): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 D:\8vo\cosas de chacarron\direct\Include\xnamathmisc.inl(519,51): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(137,48): error C2440: '=': cannot convert from 'const wchar_t [20]' to 'LPCSTR'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(137,26): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(146,1): error C2664: 'HWND CreateWindowExA(DWORD,LPCSTR,LPCSTR,DWORD,int,int,int,int,HWND,HMENU,HINSTANCE,LPVOID)': cannot convert argument 2 from 'const wchar_t [20]' to 'LPCSTR'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(146,1): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(4416,1): message : see declaration of 'CreateWindowExA'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(175,10): error C2664: 'HRESULT D3DX11CompileFromFileA(LPCSTR,const D3D10_SHADER_MACRO *,LPD3D10INCLUDE,LPCSTR,LPCSTR,UINT,UINT,ID3DX11ThreadPump *,ID3D10Blob **,ID3D10Blob **,HRESULT *)': cannot convert argument 1 from 'WCHAR *' to 'LPCSTR'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(175,33): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-D:\8vo\cosas de chacarron\direct\Include\d3dx11async.h(75,16): message : see declaration of 'D3DX11CompileFromFileA'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(304,9): error C2664: 'int MessageBoxA(HWND,LPCSTR,LPCSTR,UINT)': cannot convert argument 2 from 'const wchar_t [106]' to 'LPCSTR'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(305,21): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(9153,1): message : see declaration of 'MessageBoxA'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(340,9): error C2664: 'int MessageBoxA(HWND,LPCSTR,LPCSTR,UINT)': cannot convert argument 2 from 'const wchar_t [106]' to 'LPCSTR'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(341,21): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(9153,1): message : see declaration of 'MessageBoxA'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(461,113): error C2664: 'HRESULT D3DX11CreateShaderResourceViewFromFileA(ID3D11Device *,LPCSTR,D3DX11_IMAGE_LOAD_INFO *,ID3DX11ThreadPump *,ID3D11ShaderResourceView **,HRESULT *)': cannot convert argument 2 from 'const wchar_t [13]' to 'LPCSTR'
-D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(461,64): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
-D:\8vo\cosas de chacarron\direct\Include\d3dx11tex.h(439,5): message : see declaration of 'D3DX11CreateShaderResourceViewFromFileA'
+  Tutorial07_2010.vcxproj -> D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\bin\x64\Tutorial07_d.exe
