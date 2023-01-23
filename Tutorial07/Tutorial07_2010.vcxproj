@@ -394,15 +394,15 @@
     <ClCompile Include="src\Tutorial07.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tutorial07.fx" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\Resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tutorial07.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Tutorial07.fx">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
