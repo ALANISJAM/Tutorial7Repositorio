@@ -117,4 +117,5 @@ D:\8vo\cosas de chacarron\direct\Include\xnamathvector.inl(1269,78): warning C48
 D:\8vo\cosas de chacarron\direct\Include\xnamathmisc.inl(518,43): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 D:\8vo\cosas de chacarron\direct\Include\xnamathmisc.inl(519,40): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 D:\8vo\cosas de chacarron\direct\Include\xnamathmisc.inl(519,51): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
+D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\src\Tutorial07.cpp(428,51): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
   Tutorial07_2010.vcxproj -> D:\proyectosdegithub\Tutorial7Repositorio\Tutorial07\bin\x64\Tutorial07_d.exe
