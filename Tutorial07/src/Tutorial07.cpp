@@ -736,3 +736,10 @@ void Render()
     //
     g_pSwapChain->Present(0, 0);
 }
+
+
+
+void Movimiento()
+{
+   
+}
