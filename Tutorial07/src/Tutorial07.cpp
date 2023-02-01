@@ -12,6 +12,7 @@
 #include <xnamath.h>
 #include "resource.h"
 #include <vector>
+#include "Time.h"
 
 //--------------------------------------------------------------------------------------
 // Structures
@@ -76,6 +77,7 @@ XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
 Camera cam;
 
+Time g_Time;
 //--------------------------------------------------------------------------------------
 // Forward declarations
 //--------------------------------------------------------------------------------------
@@ -84,7 +86,7 @@ HRESULT InitDevice();
 //void CleanupDevice();lo cambiamos por destroy
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
-void update();
+void update(float deltaTime);
 void destroy();
 
 //Encargado de las inicializaciones de todos los datos que se encunetran en el proyecto
@@ -154,6 +156,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
         return 0;
     }
 
+    g_Time.init();
     // Main message loop
     MSG msg = { 0 };
     while (WM_QUIT != msg.message)
@@ -165,7 +168,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
         }
         else
         {
-            update();
+            g_Time.update();
+            update(g_Time.m_deltaTime);
             Render();
         }
     }
@@ -614,7 +618,7 @@ HRESULT InitDevice()
     return S_OK;
 }
 
-void update()
+void update(float deltaTime)
 {
     // Update our time
     static float t = 0.0f;
@@ -635,7 +639,7 @@ void update()
     g_vMeshColor.y = (cosf(t * 3.0f) + 1.0f) * 0.5f;
     g_vMeshColor.z = (sinf(t * 5.0f) + 1.0f) * 0.5f;
     // Rotate cube around the origin
-    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
+    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(deltaTime) * XMMatrixTranslation(1, 0, 0);
     //
     // Update variables that change once per frame
     //
