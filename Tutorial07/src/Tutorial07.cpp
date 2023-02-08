@@ -722,6 +722,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case 'W': 
             PosicionVec.y += Speed * g_Time.m_deltaTime; //when you press the letter w, the cube will move up, 
                 //causing the velocity to be added to the vector in y multiplying with the real time
+            break;
         case 'S': 
             PosicionVec.y -= Speed * g_Time.m_deltaTime; //when you press the letter s, the cube will move down,
             //causing the vector to slow down in y multiplying with real time
