@@ -5,7 +5,7 @@
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
-#include <windows.h>
+#include <windows.h> 
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <d3dcompiler.h>
@@ -13,6 +13,7 @@
 #include "resource.h"
 #include <vector>
 #include "Time.h"
+#define WINDOWS
 
 //--------------------------------------------------------------------------------------
 // Structures
@@ -20,9 +21,11 @@
 //--------------------------------------------------------------------------------------
 struct SimpleVertex
 {
-    XMFLOAT3 Pos;
-    XMFLOAT2 Tex;
+    XMFLOAT3 Pos; 
+    XMFLOAT2 Tex; 
+
 };
+
 
 //struct CBNeverChanges
 //{
@@ -33,18 +36,29 @@ struct SimpleVertex
 //{
 //    XMMATRIX mProjection;
 //};
-//
-struct Camera
-{
-    XMMATRIX mView;
-    XMMATRIX mProjection;
-};
+
 
 struct CBChangesEveryFrame
 {
     XMMATRIX mWorld;
     XMFLOAT4 vMeshColor;
 };
+struct Vector3 
+    //we put a vector structure to help us move the cube,
+    //we initialize everything to 0 so that there is no error
+{
+    float x = 0.0f; 
+    float y = 0.0f; 
+    float z = 0.0f; 
+};
+
+struct Camera
+{
+    XMMATRIX mView;
+    XMMATRIX mProjection;
+};
+
+
 
 
 //--------------------------------------------------------------------------------------
@@ -65,9 +79,9 @@ ID3D11PixelShader* g_pPixelShader = nullptr;
 ID3D11InputLayout* g_pVertexLayout = nullptr;
 ID3D11Buffer* g_pVertexBuffer = nullptr;
 ID3D11Buffer* g_pIndexBuffer = nullptr;
-ID3D11Buffer* g_Camera = nullptr;
 //ID3D11Buffer*                       g_pCBNeverChanges = nullptr;
 //ID3D11Buffer*                       g_pCBChangeOnResize = nullptr;
+ID3D11Buffer* g_Camera = nullptr;
 ID3D11Buffer* g_pCBChangesEveryFrame = nullptr;
 ID3D11ShaderResourceView* g_pTextureRV = nullptr;
 ID3D11SamplerState* g_pSamplerLinear = nullptr;
@@ -75,26 +89,31 @@ XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
+
 Camera cam;
 
-Time g_Time;
+Vector3 PosicionVec; //we create a global Variable called PosicionVec that is a Vector3
+float Speed = 0.1f; //We put a global variable called Speed that will be the speed at which our cube will move
+Time  g_Time; 
+
+
 //--------------------------------------------------------------------------------------
 // Forward declarations
 //--------------------------------------------------------------------------------------
-HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
-HRESULT InitDevice();
-//void CleanupDevice();lo cambiamos por destroy
+HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow); // funciona como un booleano y hay que ocuparlo con mesura 
+HRESULT InitDevice(); // duda que es el HRESULT
+//void CleanupDevice(); // que borra la pantalla en modo gráfico y establece la posición actual en (0,0). Limpiar la pantalla consiste en llenar la pantalla con el color de fondo actual.
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
-void update(float deltaTime);
+void update(float deltaTSime);
 void destroy();
 
 //Encargado de las inicializaciones de todos los datos que se encunetran en el proyecto
-void init()
-{
-}
-
-//Encargada de actualizar la logica del programa
+//void init() {
+//
+//}
+// 
+////Encargada de actualizar la logica del programa
 /*void update()
 {
 
@@ -125,19 +144,16 @@ void init()
 
     g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
 }*/
-
+//
+// 
 //Encargada de actualizar exclusivamente los datos que se presenten en pantalla
-void render()
-{
-}
-
-//Funcion encargada de liberar los recursos utilizados en el programa
-/*
-void destroy()
-{
-}
-*/
-
+//void render() {
+//
+//}
+////Funcion encargada de liberar los recursos utilizados en el programa
+//void Destroy() {
+//
+//}
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
@@ -152,6 +168,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
     if (FAILED(InitDevice()))
     {
+        //CleanupDevice();
         destroy();
         return 0;
     }
@@ -171,9 +188,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
             g_Time.update();
             update(g_Time.m_deltaTime);
             Render();
+
         }
     }
 
+    // CleanupDevice();
     destroy();
 
     return (int)msg.wParam;
@@ -186,7 +205,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
 {
     // Register class
-    WNDCLASSEX wcex;
+    WNDCLASSEX wcex; // preguntar en clase
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = WndProc;
@@ -204,7 +223,7 @@ HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
 
     // Create window
     g_hInst = hInstance;
-    RECT rc = { 0, 0, 1920, 1080 };
+    RECT rc = { 0, 0, 640, 480 };
     AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
     g_hWnd = CreateWindow("TutorialWindowClass", "Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance,
@@ -377,33 +396,8 @@ HRESULT InitDevice()
         return hr;
     }
 
-    // Define the input layout
-    /*D3D11_INPUT_ELEMENT_DESC layout[] =
-    {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        {
-            "POSITION",
-            0, 
-            DXGI_FORMAT_R32G32B32_FLOAT,
-            0,
-            D3D11_APPEND_ALIGNED_ELEMENT,
-            D3D11_INPUT_PER_VERTEX_DATA,
-            0
-        },
-        { "TEXCOORD", 
-            0, 
-            DXGI_FORMAT_R32G32_FLOAT, 
-            0, 
-            D3D11_APPEND_ALIGNED_ELEMENT ,
-            D3D11_INPUT_PER_VERTEX_DATA, 
-            0 
-        },
-    };
-    */
-   // UINT numElements = ARRAYSIZE( layout );
 
-    std::vector<D3D11_INPUT_ELEMENT_DESC> Layout;
+    std::vector <D3D11_INPUT_ELEMENT_DESC> Layout;
 
     D3D11_INPUT_ELEMENT_DESC position;
     position.SemanticName = "POSITION";
@@ -507,6 +501,7 @@ HRESULT InitDevice()
 
     // Create index buffer
     // Create vertex buffer
+    //Holi
     WORD indices[] =
     {
         3,1,0,
@@ -543,14 +538,19 @@ HRESULT InitDevice()
     // Set primitive topology
     g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-    //// Create the constant buffers
-    //bd.Usage = D3D11_USAGE_DEFAULT;
-    //bd.ByteWidth = sizeof(CBNeverChanges);
-    //bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    //bd.CPUAccessFlags = 0;
-    //hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBNeverChanges );
-    //if( FAILED( hr ) )
-    //    return hr;
+    // Create the constant buffers
+   /* bd.Usage = D3D11_USAGE_DEFAULT;
+    bd.ByteWidth = sizeof(CBNeverChanges);
+    bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    bd.CPUAccessFlags = 0;
+    hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBNeverChanges );
+    if( FAILED( hr ) )
+        return hr;
+
+    bd.ByteWidth = sizeof(CBChangeOnResize);
+    hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBChangeOnResize );
+    if( FAILED( hr ) )
+        return hr;*/
 
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof(Camera);
@@ -598,33 +598,34 @@ HRESULT InitDevice()
     XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
     g_View = XMMatrixLookAtLH(Eye, At, Up);
 
-   // Camera cam;
 
-    //CBNeverChanges cbNeverChanges;
-   /* cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, nullptr, &cbNeverChanges, 0, 0 );*/
+
+    ///CBNeverChanges cbNeverChanges;
+    //cbNeverChanges.mView = XMMatrixTranspose( g_View );
+    //g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, nullptr, &cbNeverChanges, 0, 0 );
 
     // Initialize the projection matrix
     g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f);
 
-    /* CBChangeOnResize cbChangesOnResize;
-     cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-     g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0 );*/
-    
+    ///CBChangeOnResize cbChangesOnResize;
+    //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
+    //g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0 );
+
     cam.mView = XMMatrixTranspose(g_View);
     cam.mProjection = XMMatrixTranspose(g_Projection);
-
+    PosicionVec.x = 0; // The vector x is initialized to 0
+    PosicionVec.y = 0; // The vector y is initialized to 0
     //g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
     return S_OK;
 }
 
-void update(float deltaTime)
+void update(float deltatime)
 {
     // Update our time
-    static float t = 0.0f;
+
     if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
     {
-        t += (float)XM_PI * 0.0125f;
+        g_Time.m_deltaTime += (float)XM_PI * 0.0125f;
     }
     else
     {
@@ -632,37 +633,43 @@ void update(float deltaTime)
         unsigned int dwTimeCur = GetTickCount();
         if (dwTimeStart == 0)
             dwTimeStart = dwTimeCur;
-        t = (dwTimeCur - dwTimeStart) / 1000.0f;
+        g_Time.m_deltaTime = (dwTimeCur - dwTimeStart) / 1000.0f;
     }
+
     // Modify the color
-    g_vMeshColor.x = (sinf(t * 1.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.y = (cosf(t * 3.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.z = (sinf(t * 5.0f) + 1.0f) * 0.5f;
+    g_vMeshColor.x = (sinf(g_Time.m_deltaTime * 1.0f) + 1.0f) * 0.5f;
+    g_vMeshColor.y = (cosf(g_Time.m_deltaTime * 3.0f) + 1.0f) * 0.5f;
+    g_vMeshColor.z = (sinf(g_Time.m_deltaTime * 5.0f) + 1.0f) * 0.5f;
+
+
     // Rotate cube around the origin
-    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(deltaTime) * XMMatrixTranslation(1, 0, 0);
+    //g_World = XMMatrixScaling(1,1,1) * XMMatrixRotationY(deltatime) * XMMatrixTranslation(1, 0, 0);
+
+    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(g_Time.m_deltaTime) * XMMatrixTranslation(PosicionVec.x, PosicionVec.y, PosicionVec.z);
     //
     // Update variables that change once per frame
     //
     CBChangesEveryFrame cb;
     cb.mWorld = XMMatrixTranspose(g_World);
     cb.vMeshColor = g_vMeshColor;
+
     //UpdateCamera Buffers
-    g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
+
+
     //Update Mesh Buffers
     g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, nullptr, &cb, 0, 0);
+    g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
+
 }
-//--------------------------------------------------------------------------------------
-// Clean up the objects we've created
-//--------------------------------------------------------------------------------------
+
 void destroy()
 {
     if (g_pImmediateContext) g_pImmediateContext->ClearState();
 
     if (g_pSamplerLinear) g_pSamplerLinear->Release();
     if (g_pTextureRV) g_pTextureRV->Release();
-    /* if( g_pCBNeverChanges ) g_pCBNeverChanges->Release();
-     if( g_pCBChangeOnResize ) g_pCBChangeOnResize->Release();*/
-    
+
+
     if (g_Camera) g_Camera->Release();
 
     if (g_pCBChangesEveryFrame) g_pCBChangesEveryFrame->Release();
@@ -678,7 +685,6 @@ void destroy()
     if (g_pImmediateContext) g_pImmediateContext->Release();
     if (g_pd3dDevice) g_pd3dDevice->Release();
 }
-
 
 //--------------------------------------------------------------------------------------
 // Called every time the application receives a message
@@ -697,6 +703,41 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     case WM_DESTROY:
         PostQuitMessage(0);
+        break;
+
+    case WM_KEYDOWN:
+        //For the movement section we make that every time a 
+        //letter is entered on the keyboard, it changes its position in x, y or z
+        //depending on the letter
+        switch (wParam)
+        {
+        case 'A': 
+            PosicionVec.x -= Speed * g_Time.m_deltaTime;//when you press the letter a, the cube will move to the left, 
+            //causing the velocity to be subtracted from the vector in x multiplying with real time
+            break;
+        case 'D':
+            PosicionVec.x += Speed * g_Time.m_deltaTime; //when you press the letter d, the cube will move to the right, 
+            //causing the velocity to be added to the vector in x multiplying with real time
+            break;
+        case 'W': 
+            PosicionVec.y += Speed * g_Time.m_deltaTime; //when you press the letter w, the cube will move up, 
+                //causing the velocity to be added to the vector in y multiplying with the real time
+        case 'S': 
+            PosicionVec.y -= Speed * g_Time.m_deltaTime; //when you press the letter s, the cube will move down,
+            //causing the vector to slow down in y multiplying with real time
+            break;
+        case 'Z': 
+            PosicionVec.z += Speed * g_Time.m_deltaTime; //when you press the letter z, the cube will move to the bottom, 
+            //causing the speed to be added to the vector in z multiplying with the real time
+            break;
+        case 'X': 
+            PosicionVec.z -= Speed * g_Time.m_deltaTime; //when you press the letter z, the cube will move forward, 
+            //causing the velocity to be subtracted from the vector in z multiplying with real time
+            break;
+        
+
+        }
+
         break;
 
     default:
@@ -718,10 +759,12 @@ void Render()
     //
     float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
     g_pImmediateContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
+
     //
     // Clear the depth buffer to 1.0 (max depth)
     //
     g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+
     //
     // Render the cube
     //
@@ -729,21 +772,18 @@ void Render()
     //g_pImmediateContext->VSSetConstantBuffers( 0, 1, &g_pCBNeverChanges );
     //g_pImmediateContext->VSSetConstantBuffers( 1, 1, &g_pCBChangeOnResize );
     g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_Camera);
+
     g_pImmediateContext->VSSetConstantBuffers(1, 1, &g_pCBChangesEveryFrame);
     g_pImmediateContext->PSSetShader(g_pPixelShader, nullptr, 0);
+
     g_pImmediateContext->PSSetConstantBuffers(1, 1, &g_pCBChangesEveryFrame);
     g_pImmediateContext->PSSetShaderResources(0, 1, &g_pTextureRV);
+
     g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
     g_pImmediateContext->DrawIndexed(36, 0, 0);
+
     //
     // Present our back buffer to our front buffer
     //
     g_pSwapChain->Present(0, 0);
-}
-
-
-
-void Movimiento()
-{
-   
 }
