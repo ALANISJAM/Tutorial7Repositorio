@@ -629,9 +629,9 @@ void update(float deltatime)
     }
 
     // Modify the color
-    g_vMeshColor.x = (sinf(g_Time.m_deltaTime * 1.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.y = (cosf(g_Time.m_deltaTime * 3.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.z = (sinf(g_Time.m_deltaTime * 5.0f) + 1.0f) * 0.5f;
+   // g_vMeshColor.x = (sinf(g_Time.m_deltaTime * 1.0f) + 1.0f) * 0.5f;
+    //g_vMeshColor.y = (cosf(g_Time.m_deltaTime * 3.0f) + 1.0f) * 0.5f;
+    //g_vMeshColor.z = (sinf(g_Time.m_deltaTime * 5.0f) + 1.0f) * 0.5f;
 
 
     // Rotate cube around the origin
@@ -727,8 +727,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PosicionVec.z -= Speed * g_Time.m_deltaTime; //when you press the letter z, the cube will move forward, 
             //causing the velocity to be subtracted from the vector in z multiplying with real time
             break;
-        
-        
+            //changue the color to origin
+        case '1':
+            g_vMeshColor = XMFLOAT4(0.7f, 0.7f, 0.7f, 1.0f);
+            break;
+            //change the color to pink
+        case '2':
+            g_vMeshColor = XMFLOAT4(1.0f, 0.0f, 1.0f, 0.0f);
+            break;
+            //change the color to yellow
+        case '3':
+            g_vMeshColor = XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
+            break;
+            // change the color to blue
+        case '4':
+            g_vMeshColor = XMFLOAT4(0.0f, 0.0f, 1.0f, 0.5f);
+            break;
+   
         }
 
         break;
