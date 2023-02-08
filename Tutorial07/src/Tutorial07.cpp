@@ -5,16 +5,8 @@
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
-#include <windows.h> 
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
-#include <xnamath.h>
-#include "resource.h"
-#include <vector>
-#include "Time.h"
-#define WINDOWS
-
+#include "Prerequisities.h"
+#include "CTime.h"
 //--------------------------------------------------------------------------------------
 // Structures
 // Encargada de almacenar informacion que tendran nuestros objetos para luego dibujarse en pantalla
@@ -93,8 +85,8 @@ XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
 Camera cam;
 
 Vector3 PosicionVec; //we create a global Variable called PosicionVec that is a Vector3
-float Speed = 0.1f; //We put a global variable called Speed that will be the speed at which our cube will move
-Time  g_Time; 
+float Speed = 0.15f; //We put a global variable called Speed that will be the speed at which our cube will move
+CTime  g_Time; 
 
 
 //--------------------------------------------------------------------------------------
@@ -736,7 +728,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             //causing the velocity to be subtracted from the vector in z multiplying with real time
             break;
         
-
+        
         }
 
         break;

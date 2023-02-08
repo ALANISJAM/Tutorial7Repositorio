@@ -391,12 +391,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Time.cpp" />
+    <ClCompile Include="src\CTime.cpp" />
     <ClCompile Include="src\Tutorial07.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Prerequisities.h" />
     <ClInclude Include="include\Resource.h" />
-    <ClInclude Include="include\Time.h" />
+    <ClInclude Include="include\CTime.h" />
+    <ClInclude Include="prequesitos.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tutorial07.rc" />
