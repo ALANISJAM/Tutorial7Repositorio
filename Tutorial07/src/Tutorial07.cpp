@@ -493,7 +493,7 @@ HRESULT InitDevice()
 
     // Create index buffer
     // Create vertex buffer
-    //Holi
+
     WORD indices[] =
     {
         3,1,0,
