@@ -19,16 +19,6 @@ struct SimpleVertex
 };
 
 
-//struct CBNeverChanges
-//{
-//    XMMATRIX mView;
-//};
-//
-//struct CBChangeOnResize
-//{
-//    XMMATRIX mProjection;
-//};
-
 
 struct CBChangesEveryFrame
 {
@@ -92,60 +82,15 @@ CTime  g_Time;
 //--------------------------------------------------------------------------------------
 // Forward declarations
 //--------------------------------------------------------------------------------------
-HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow); // funciona como un booleano y hay que ocuparlo con mesura 
-HRESULT InitDevice(); // duda que es el HRESULT
-//void CleanupDevice(); // que borra la pantalla en modo gráfico y establece la posición actual en (0,0). Limpiar la pantalla consiste en llenar la pantalla con el color de fondo actual.
+HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow); 
+HRESULT InitDevice(); 
+
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
 void update(float deltaTSime);
 void destroy();
 
-//Encargado de las inicializaciones de todos los datos que se encunetran en el proyecto
-//void init() {
-//
-//}
-// 
-////Encargada de actualizar la logica del programa
-/*void update()
-{
 
-    // Update our time
-    static float t = 0.0f;
-    if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
-    {
-        t += (float)XM_PI * 0.0125f;
-    }
-    else
-    {
-        static DWORD dwTimeStart = 0;
-        DWORD dwTimeCur = GetTickCount();
-        if (dwTimeStart == 0)
-            dwTimeStart = dwTimeCur;
-        t = (dwTimeCur - dwTimeStart) / 1000.0f;
-    }
-
-
-    // Update variables that change once per frame
-         // Rotate cube around the origin
-    g_World = XMMatrixScaling(1, 1, 1) * XMMatrixRotationY(t) * XMMatrixTranslation(0, 0, 0);
-    CBChangesEveryFrame cb;
-    cb.mWorld = XMMatrixTranspose(g_World);
-    cb.vMeshColor = g_vMeshColor;
-
-    g_pImmediateContext->UpdateSubresource(g_pCBChangesEveryFrame, 0, nullptr, &cb, 0, 0);
-
-    g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
-}*/
-//
-// 
-//Encargada de actualizar exclusivamente los datos que se presenten en pantalla
-//void render() {
-//
-//}
-////Funcion encargada de liberar los recursos utilizados en el programa
-//void Destroy() {
-//
-//}
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
@@ -238,10 +183,7 @@ HRESULT CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szSh
 
     DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 #if defined( DEBUG ) || defined( _DEBUG )
-    // Set the D3DCOMPILE_DEBUG flag to embed debug information in the shaders.
-    // Setting this flag improves the shader debugging experience, but still allows 
-    // the shaders to be optimized and to run exactly the way they will run in 
-    // the release configuration of this program.
+    
     dwShaderFlags |= D3DCOMPILE_DEBUG;
 #endif
 
@@ -531,18 +473,7 @@ HRESULT InitDevice()
     g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
     // Create the constant buffers
-   /* bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(CBNeverChanges);
-    bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    bd.CPUAccessFlags = 0;
-    hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBNeverChanges );
-    if( FAILED( hr ) )
-        return hr;
-
-    bd.ByteWidth = sizeof(CBChangeOnResize);
-    hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBChangeOnResize );
-    if( FAILED( hr ) )
-        return hr;*/
+  
 
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof(Camera);
@@ -592,22 +523,16 @@ HRESULT InitDevice()
 
 
 
-    ///CBNeverChanges cbNeverChanges;
-    //cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    //g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, nullptr, &cbNeverChanges, 0, 0 );
-
     // Initialize the projection matrix
     g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f);
 
-    ///CBChangeOnResize cbChangesOnResize;
-    //cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-    //g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0 );
+    
 
     cam.mView = XMMatrixTranspose(g_View);
     cam.mProjection = XMMatrixTranspose(g_Projection);
     PosicionVec.x = 0; // The vector x is initialized to 0
     PosicionVec.y = 0; // The vector y is initialized to 0
-    //g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
+   
     return S_OK;
 }
 
