@@ -6,39 +6,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
 #include "Prerequisities.h"
+#include "Commons.h"
 #include "CTime.h"
 //--------------------------------------------------------------------------------------
 // Structures
 // Encargada de almacenar informacion que tendran nuestros objetos para luego dibujarse en pantalla
 //--------------------------------------------------------------------------------------
-struct SimpleVertex
-{
-    XMFLOAT3 Pos; 
-    XMFLOAT2 Tex; 
-
-};
-
-
-
-struct CBChangesEveryFrame
-{
-    XMMATRIX mWorld;
-    XMFLOAT4 vMeshColor;
-};
-struct Vector3 
-    //we put a vector structure to help us move the cube,
-    //we initialize everything to 0 so that there is no error
-{
-    float x = 0.0f; 
-    float y = 0.0f; 
-    float z = 0.0f; 
-};
-
-struct Camera
-{
-    XMMATRIX mView;
-    XMMATRIX mProjection;
-};
 
 
 
@@ -95,8 +68,8 @@ void destroy();
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
 //--------------------------------------------------------------------------------------
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
-{
+int 
+WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow){
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
@@ -139,8 +112,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 //--------------------------------------------------------------------------------------
 // Register class and create window
 //--------------------------------------------------------------------------------------
-HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
-{
+HRESULT 
+InitWindow(HINSTANCE hInstance, int nCmdShow){
     // Register class
     WNDCLASSEX wcex; // preguntar en clase
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -177,15 +150,15 @@ HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow)
 //--------------------------------------------------------------------------------------
 // Helper for compiling shaders with D3DX11
 //--------------------------------------------------------------------------------------
-HRESULT CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut)
-{
+HRESULT 
+CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut){
     HRESULT hr = S_OK;
 
     DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
-#if defined( DEBUG ) || defined( _DEBUG )
+    #if defined( DEBUG ) || defined( _DEBUG )
     
     dwShaderFlags |= D3DCOMPILE_DEBUG;
-#endif
+    #endif
 
     ID3DBlob* pErrorBlob;
     hr = D3DX11CompileFromFile(szFileName, nullptr, nullptr, szEntryPoint, szShaderModel,
@@ -206,8 +179,8 @@ HRESULT CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szSh
 //--------------------------------------------------------------------------------------
 // Create Direct3D device and swap chain
 //--------------------------------------------------------------------------------------
-HRESULT InitDevice()
-{
+HRESULT 
+InitDevice(){
     HRESULT hr = S_OK;
 
     RECT rc;
@@ -216,9 +189,9 @@ HRESULT InitDevice()
     UINT height = rc.bottom - rc.top;
 
     UINT createDeviceFlags = 0;
-#ifdef _DEBUG
+    #ifdef _DEBUG
     createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif
+    #endif
 
     D3D_DRIVER_TYPE driverTypes[] =
     {
@@ -536,8 +509,8 @@ HRESULT InitDevice()
     return S_OK;
 }
 
-void update(float deltatime)
-{
+void 
+update(float deltatime){
     // Update our time
 
     if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
@@ -553,15 +526,6 @@ void update(float deltatime)
         g_Time.m_deltaTime = (dwTimeCur - dwTimeStart) / 1000.0f;
     }
 
-    // Modify the color
-   // g_vMeshColor.x = (sinf(g_Time.m_deltaTime * 1.0f) + 1.0f) * 0.5f;
-    //g_vMeshColor.y = (cosf(g_Time.m_deltaTime * 3.0f) + 1.0f) * 0.5f;
-    //g_vMeshColor.z = (sinf(g_Time.m_deltaTime * 5.0f) + 1.0f) * 0.5f;
-
-
-    // Rotate cube around the origin
-    //g_World = XMMatrixScaling(1,1,1) * XMMatrixRotationY(deltatime) * XMMatrixTranslation(1, 0, 0);
-
     g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(g_Time.m_deltaTime) * XMMatrixTranslation(PosicionVec.x, PosicionVec.y, PosicionVec.z);
     //
     // Update variables that change once per frame
@@ -570,7 +534,6 @@ void update(float deltatime)
     cb.mWorld = XMMatrixTranspose(g_World);
     cb.vMeshColor = g_vMeshColor;
 
-    //UpdateCamera Buffers
 
 
     //Update Mesh Buffers
@@ -579,8 +542,8 @@ void update(float deltatime)
 
 }
 
-void destroy()
-{
+void
+destroy(){
     if (g_pImmediateContext) g_pImmediateContext->ClearState();
 
     if (g_pSamplerLinear) g_pSamplerLinear->Release();
@@ -606,8 +569,8 @@ void destroy()
 //--------------------------------------------------------------------------------------
 // Called every time the application receives a message
 //--------------------------------------------------------------------------------------
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
+LRESULT 
+CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
     PAINTSTRUCT ps;
     HDC hdc;
 
@@ -670,8 +633,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 //--------------------------------------------------------------------------------------
 // Render a frame
 //--------------------------------------------------------------------------------------
-void Render()
-{
+void 
+Render(){
 
     //
     // Clear the back buffer
