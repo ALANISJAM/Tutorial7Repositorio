@@ -32,6 +32,9 @@
     <ClInclude Include="include\Prerequisities.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Commons.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Tutorial07.cpp">
