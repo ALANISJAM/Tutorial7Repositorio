@@ -392,13 +392,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\CTime.cpp" />
+    <ClCompile Include="src\DeviceContext.cpp" />
     <ClCompile Include="src\Tutorial07.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Commons.h" />
+    <ClInclude Include="include\DeviceContext.h" />
     <ClInclude Include="include\Prerequisities.h" />
     <ClInclude Include="include\Resource.h" />
     <ClInclude Include="include\CTime.h" />
+    <ClInclude Include="include\Window.h" />
     <ClInclude Include="prequesitos.h" />
   </ItemGroup>
   <ItemGroup>
