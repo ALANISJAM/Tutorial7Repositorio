@@ -14,7 +14,7 @@ SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffe
 	unsigned int createDeviceFlags = 0;
 #ifdef _DEBUG
 	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif // _DEBUG
+#endif 
 
 	D3D_DRIVER_TYPE driverTypes[] = {
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -73,7 +73,7 @@ SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffe
 		exit(1);
 	}
 
-	// Create a render target view
+	
 	hr = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBuffer.m_texture);
 	if (FAILED(hr)) {
 		WARNING("ERROR: SwapChain::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR GetBuffer()] \n");
