@@ -14,6 +14,14 @@
 #include "Commons.h"
 
 
+
+#define WARNING( s )						            \
+{											                      \
+   std::wostringstream os_;					        \
+   os_ << s;								                \
+   OutputDebugStringW( os_.str().c_str() ); \
+}
+
 //MACRO for  safe realease of resources
 #define SAFE_RELEASE(x) if(x != nullptr) x->Release(); x = nullptr;
 

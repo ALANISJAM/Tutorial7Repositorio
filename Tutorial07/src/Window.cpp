@@ -1,9 +1,10 @@
 #include "Window.h"
+#include "Prerequisities.h"
 
 Window::Window(){}
 Window::~Window(){}
 
-HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc) {
+HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName) {
 
     m_hInst = hInstance;
     // Register class
@@ -27,8 +28,8 @@ HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc) {
     RECT rc = { 0, 0, 640, 480 };
     AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
-    m_hwnd = CreateWindow("TutorialWindowClass",
-        m_windowName.data(),
+    m_hWnd = CreateWindow("TutorialWindowClass",
+        m_windowName,
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
@@ -39,12 +40,12 @@ HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc) {
         m_hInst,
         nullptr);
 
-    if (!m_hwnd)
+    if (!m_hWnd)
         return E_FAIL;
 
-    ShowWindow(m_hwnd, nCmdShow);
+    ShowWindow(m_hWnd, nCmdShow);
 
-    GetClientRect(m_hwnd, &m_rect);
+    GetClientRect(m_hWnd, &m_rect);
     m_width = m_rect.right - m_rect.left;
     m_height = m_rect.bottom - m_rect.top;
 

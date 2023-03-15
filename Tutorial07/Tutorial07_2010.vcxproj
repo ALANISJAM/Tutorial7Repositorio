@@ -392,16 +392,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\CTime.cpp" />
+    <ClCompile Include="src\DepthStencilView.cpp" />
+    <ClCompile Include="src\Device.cpp" />
     <ClCompile Include="src\DeviceContext.cpp" />
+    <ClCompile Include="src\InputLayout.cpp" />
+    <ClCompile Include="src\RenderTargetView.cpp" />
+    <ClCompile Include="src\SamplerState.cpp" />
+    <ClCompile Include="src\SwapChain.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Tutorial07.cpp" />
+    <ClCompile Include="src\Viewport.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Commons.h" />
+    <ClInclude Include="include\DepthStencilView.h" />
+    <ClInclude Include="include\Device.h" />
     <ClInclude Include="include\DeviceContext.h" />
+    <ClInclude Include="include\InputLayout.h" />
     <ClInclude Include="include\Prerequisities.h" />
+    <ClInclude Include="include\RenderTargetView.h" />
     <ClInclude Include="include\Resource.h" />
     <ClInclude Include="include\CTime.h" />
+    <ClInclude Include="include\SamplerState.h" />
+    <ClInclude Include="include\SwapChain.h" />
+    <ClInclude Include="include\Texture.h" />
+    <ClInclude Include="include\Viewport.h" />
     <ClInclude Include="include\Window.h" />
     <ClInclude Include="prequesitos.h" />
   </ItemGroup>
