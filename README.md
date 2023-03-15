@@ -18,3 +18,31 @@ Z--- al presionar esta tecla se mueve el cubo hacia el fondo
 
 X--- al presionar esta tecla se mueve el cubo hacia el frente
 
+
+
+
+# Entrega segundo parcial
+
+Abstracción de clases
+
+DepthStencilView
+
+Device
+
+DeviceContext
+
+InputLayout
+
+RenderTargetView
+
+SamplerState
+
+SwapChain
+
+Texture
+
+Viewport
+
+Window
+
+Cada clase cuenta con su Header file (.h) y C++ file (.cpp)
