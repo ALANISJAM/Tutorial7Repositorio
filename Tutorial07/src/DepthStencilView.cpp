@@ -14,7 +14,7 @@ DepthStencilView::init(Device device,
 		exit(1);
 	}
 	else {
-		// Create the depth stencil view
+		
 		D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
 		memset(&descDSV, 0, sizeof(descDSV));
 		descDSV.Format = Format;

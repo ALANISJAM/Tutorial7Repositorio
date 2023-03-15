@@ -16,7 +16,7 @@ public:
 	SwapChain() = default;
 	~SwapChain() {};
 
-	// Create Direct3D device
+	 
 	void
 		init(Device& device,
 			DeviceContext& deviceContext,
@@ -32,7 +32,7 @@ public:
 	void
 		destroy();
 
-	//Present, lo que presentamos en pantalla
+	
 	void
 		present();
 

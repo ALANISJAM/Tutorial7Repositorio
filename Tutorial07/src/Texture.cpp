@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include "Device.h"
 
-//Texture::~Texture(){
+
 void
 Texture::destroy() {
 	if (m_texture != nullptr) {
@@ -19,7 +19,7 @@ Texture::init(Device device, std::string textureName) {
 		exit(1);
 	}
 
-	//Check if texture exist
+	
 
 	HRESULT hr = S_OK;
 
@@ -56,8 +56,8 @@ Texture::init(Device device,
 
 	D3D11_TEXTURE2D_DESC desc;
 	memset(&desc, 0, sizeof(desc));
-	desc.Width = width;		// width;
-	desc.Height = height;	// height;
+	desc.Width = width;		
+	desc.Height = height;	
 	desc.MipLevels = 1;
 	desc.ArraySize = 1;
 	desc.Format = Format;

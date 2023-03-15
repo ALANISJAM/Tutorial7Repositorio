@@ -20,3 +20,17 @@ InputLayout::init(Device device,
 		VertexShaderData->GetBufferSize(),
 		&m_inputLayout);
 }
+void
+InputLayout::update() {
+
+}
+
+void
+InputLayout::render() {
+
+}
+
+void
+InputLayout::destroy() {
+
+}
