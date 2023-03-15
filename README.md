@@ -21,7 +21,7 @@ X--- al presionar esta tecla se mueve el cubo hacia el frente
 
 
 
-Entrega segundo parcial
+#Entrega segundo parcial
 
 Abstracción de clases
 
