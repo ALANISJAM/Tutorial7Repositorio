@@ -37,7 +37,7 @@ void
 SamplerState::render()
 {
 }
-//Erick Aaron :D
+
 void
 SamplerState::destroy()
 {
