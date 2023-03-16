@@ -1,6 +1,7 @@
 #pragma once
 #include "Prerequisities.h"
 
+//se llaman las clases que vamos a usar
 class
 	Device;
 class
@@ -25,6 +26,7 @@ public:
 		destroy();
 
 public:
+	//se igualan las variables que necesitamoss
 	ID3D11RenderTargetView* m_renderTargetView = nullptr;
 
 };

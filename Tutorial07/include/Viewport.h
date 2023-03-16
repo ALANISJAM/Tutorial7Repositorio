@@ -1,6 +1,7 @@
 #pragma once
 #include "Prerequisities.h"
 
+//se llaman las clases que vamos a usar
 class Window;
 class Viewport
 {
@@ -20,6 +21,7 @@ public:
 		destroy();
 
 public:
+	//se igualan las variables que necesitamos
 	D3D11_VIEWPORT m_viewport;
 };
 

@@ -25,6 +25,7 @@ public:
 
 	}
 public:
+	//se igualan las variables que necesitamos
 	HWND m_hWnd = nullptr;
 	HINSTANCE m_hInst = nullptr;
 	RECT m_rect;

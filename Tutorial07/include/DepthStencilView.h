@@ -1,7 +1,7 @@
 #include "Prerequisities.h"
 #pragma once
 
-//Call to the Class is begin used in cpp (Device)
+//se llaman las clases que vamos a usar
 class
 	Device;
 
@@ -12,7 +12,7 @@ public:
 	DepthStencilView() = default;
 	~DepthStencilView() { SAFE_RELEASE(m_pDepthStencilView) };
 
-	// Create the depth stencil view
+	// creamos el depthstencilview
 	void
 		init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format);
 
@@ -26,6 +26,7 @@ public:
 		destroy();
 
 public:
+	//se igualan las variables que necesitamos
 	ID3D11DepthStencilView* m_pDepthStencilView = nullptr;
 
 };

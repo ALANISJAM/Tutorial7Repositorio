@@ -1,6 +1,7 @@
 #pragma once
 #include "Prerequisities.h"
 
+//se llaman las clases que vamos a usar
 class
 	Device;
 class
@@ -38,6 +39,7 @@ public:
 
 
 private:
+	//se igualan las variables que necesitamos
 	D3D_DRIVER_TYPE m_driverType = D3D_DRIVER_TYPE_NULL;
 	D3D_FEATURE_LEVEL m_featureLevel = D3D_FEATURE_LEVEL_11_0;
 	IDXGISwapChain* m_swapChain = nullptr;

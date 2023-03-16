@@ -2,6 +2,7 @@
 #include "Prerequisities.h"
 #include "Commons.h"
 
+//se llaman las clases que vamos a usar
 class
 	Device;
 
@@ -33,10 +34,8 @@ public:
 
 
 public:
-	
+	//se igualan las variables que necesitamos
 	ID3D11Texture2D* m_texture = nullptr;
-
-
 	ID3D11ShaderResourceView* m_textureFromImg = nullptr;
 
 };
