@@ -38,10 +38,10 @@ Texture::init(Device device, std::string textureName) {
 
 void
 Texture::init(Device device,
-	unsigned int width,
-	unsigned int height,
-	DXGI_FORMAT Format,
-	unsigned int BindFlags) {
+              unsigned int width,
+              unsigned int height,
+              DXGI_FORMAT Format,
+              unsigned int BindFlags) {
 	if (device.m_device == nullptr) {
 		WARNING("ERROR: Texture::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");
 		exit(1);
@@ -56,17 +56,17 @@ Texture::init(Device device,
 
 	D3D11_TEXTURE2D_DESC desc;
 	memset(&desc, 0, sizeof(desc));
-	desc.Width = width;		
-	desc.Height = height;	
-	desc.MipLevels = 1;
-	desc.ArraySize = 1;
-	desc.Format = Format;
-	desc.SampleDesc.Count = 1;
-	desc.SampleDesc.Quality = 0;
-	desc.Usage = D3D11_USAGE_DEFAULT;
-	desc.BindFlags = BindFlags;
-	desc.CPUAccessFlags = 0;
-	desc.MiscFlags = 0;
+         desc.Width = width;		
+         desc.Height = height;	
+         desc.MipLevels = 1;
+         desc.ArraySize = 1;
+         desc.Format = Format;
+         desc.SampleDesc.Count = 1;
+         desc.SampleDesc.Quality = 0;
+         desc.Usage = D3D11_USAGE_DEFAULT;
+         desc.BindFlags = BindFlags;
+         desc.CPUAccessFlags = 0;
+         desc.MiscFlags = 0;
 
 	if (BindFlags == D3D11_BIND_DEPTH_STENCIL) {
 		hr = device.CreateTexture2D(&desc, nullptr, &m_texture);

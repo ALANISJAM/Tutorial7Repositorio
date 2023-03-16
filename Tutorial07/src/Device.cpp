@@ -111,10 +111,10 @@ Device::CreateVertexShader(const void* pShaderBytecode,
 
 HRESULT
 Device::CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
-	                      unsigned int NumElements,
-	                      const void* pShaderBytecodeWithInputSignature,
-	                      unsigned int BytecodeLength,
-	                      ID3D11InputLayout** ppInputLayout) {
+                          unsigned int NumElements,
+                          const void* pShaderBytecodeWithInputSignature,
+                          unsigned int BytecodeLength,
+                          ID3D11InputLayout** ppInputLayout) {
 	HRESULT hr = S_OK;
 
 	if (pInputElementDescs == nullptr) {
@@ -141,9 +141,9 @@ Device::CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
 
 HRESULT
 Device::CreatePixelShader(const void* pShaderBytecode,
-	                      unsigned int BytecodeLength,
-	                      ID3D11ClassLinkage* pClassLinkage,
-	                      ID3D11PixelShader** ppPixelShader) {
+                          unsigned int BytecodeLength,
+                          ID3D11ClassLinkage* pClassLinkage,
+                          ID3D11PixelShader** ppPixelShader) {
 	HRESULT hr;
 
 	if (pShaderBytecode == nullptr) {
@@ -164,8 +164,8 @@ Device::CreatePixelShader(const void* pShaderBytecode,
 
 HRESULT
 Device::CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
-	                 const D3D11_SUBRESOURCE_DATA* pInitialData,
-	                 ID3D11Buffer** ppBuffer) {
+                     const D3D11_SUBRESOURCE_DATA* pInitialData,
+                     ID3D11Buffer** ppBuffer) {
 	HRESULT hr;
 
 	if (pDesc == nullptr) {
@@ -186,7 +186,7 @@ Device::CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
 
 HRESULT
 Device::CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc,
-	                       ID3D11SamplerState** ppSamplerState) {
+                           ID3D11SamplerState** ppSamplerState) {
 	HRESULT hr;
 
 	if (pSamplerDesc == nullptr) {
