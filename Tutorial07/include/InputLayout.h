@@ -4,7 +4,8 @@
 class
 Device;
 
-class InputLayout
+class 
+InputLayout
 {
 public:
 InputLayout() = default;

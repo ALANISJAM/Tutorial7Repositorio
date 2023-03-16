@@ -1,24 +1,25 @@
 #include <Windows.h>
 #pragma once
-class CTime
+class 
+CTime
 {
 public:
-	CTime();
-	~CTime();
+CTime();
+~CTime();
 
-	void 
-	init();
+void 
+init();
 
-	void 
-	update();
+void 
+update();
 
-	void 
-	render();
+void 
+render();
 
-	void 
-	destroy();
+void 
+destroy();
 
-	float m_deltaTime;
+float m_deltaTime;
 private:
 
 	

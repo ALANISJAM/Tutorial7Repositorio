@@ -1,7 +1,8 @@
 #include "Prerequisities.h"
 #pragma once
 
-class DeviceContext
+class 
+DeviceContext
 {
 public:
 DeviceContext() = default;

@@ -7,7 +7,8 @@ Device;
 class
 Texture;
 
-class RenderTargetView
+class 
+RenderTargetView
 {
 public:
 RenderTargetView() = default;
