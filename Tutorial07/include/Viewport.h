@@ -2,26 +2,28 @@
 #include "Prerequisities.h"
 
 //se llaman las clases que vamos a usar
-class Window;
-class Viewport
+class 
+Window;
+class 
+Viewport
 {
 public:
-	Viewport() = default;
-	~Viewport(){};
-	void
-		init(Window window);
+Viewport() = default;
+~Viewport(){};
+void
+init(Window window);
 
-	void
-		update();
+void
+update();
 
-	void
-		render();
+void
+render();
 
-	void
-		destroy();
+void
+destroy();
 
 public:
-	//se igualan las variables que necesitamos
-	D3D11_VIEWPORT m_viewport;
+//se igualan las variables que necesitamos
+D3D11_VIEWPORT m_viewport;
 };
 

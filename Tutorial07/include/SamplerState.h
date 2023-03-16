@@ -2,28 +2,30 @@
 #include "Prerequisities.h"
 
 //se llaman las clases que vamos a usar
-class Device;
+class 
+Device;
 
-class SamplerState
+class
+SamplerState
 {
 public:
-	SamplerState() = default;
-	~SamplerState(){};
+SamplerState() = default;
+~SamplerState(){};
 
-	void
-		init(Device device);
+void
+init(Device device);
 
-	void
-		update();
+void
+update();
 
-	void
-		render();
+void
+render();
 
-	void
-		destroy();
+void
+destroy();
 
 public:
-	//se igualan las variables que necesitamos
-	ID3D11SamplerState* m_sampler = nullptr;
+//se igualan las variables que necesitamos
+ID3D11SamplerState* m_sampler = nullptr;
 };
 

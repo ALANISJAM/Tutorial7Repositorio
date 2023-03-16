@@ -4,33 +4,27 @@
 
 
 class
-	Window {
+Window {
 public:
-	Window();
-	~Window();
+Window();
+~Window();
 
-	HRESULT
-		init(HINSTANCE hinstance, int nCmdShow, WNDPROC wndProc, LPCSTR windowName);
-	void update()
-	{
+HRESULT
+init(HINSTANCE hinstance, int nCmdShow, WNDPROC wndProc, LPCSTR windowName);
+void update(){
+}
 
-	}
-
-	void render()
-	{
-
-	}
-	void destroy()
-	{
-
-	}
+void render(){
+}
+void destroy(){
+}
 public:
-	//se igualan las variables que necesitamos
-	HWND m_hWnd = nullptr;
-	HINSTANCE m_hInst = nullptr;
-	RECT m_rect;
-	unsigned int m_width;
-	unsigned int m_height;
-	LPCSTR m_windowName = "HeartBlast Engine";
+//se igualan las variables que necesitamos
+HWND m_hWnd = nullptr;
+HINSTANCE m_hInst = nullptr;
+RECT m_rect;
+unsigned int m_width;
+unsigned int m_height;
+LPCSTR m_windowName = "HeartBlast Engine";
 	
 };

@@ -3,8 +3,8 @@
 
 void
 DepthStencilView::init(Device device,
-	ID3D11Resource* depthStencil,
-	DXGI_FORMAT Format) {
+ID3D11Resource* depthStencil,
+DXGI_FORMAT Format) {
 	if (device.m_device == nullptr) {
 		WARNING("ERROR: DepthStencilView::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");
 		exit(1);

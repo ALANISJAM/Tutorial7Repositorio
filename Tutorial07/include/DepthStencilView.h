@@ -3,30 +3,30 @@
 
 //se llaman las clases que vamos a usar
 class
-	Device;
+Device;
 
 class
-	DepthStencilView
+DepthStencilView
 {
 public:
-	DepthStencilView() = default;
-	~DepthStencilView() { SAFE_RELEASE(m_pDepthStencilView) };
+DepthStencilView() = default;
+~DepthStencilView() { SAFE_RELEASE(m_pDepthStencilView) };
 
-	// creamos el depthstencilview
-	void
-		init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format);
+// creamos el depthstencilview
+void
+init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format);
 
-	void
-		update();
+void
+update();
 
-	void
-		render();
+void
+render();
 
-	void
-		destroy();
+void
+destroy();
 
 public:
-	//se igualan las variables que necesitamos
-	ID3D11DepthStencilView* m_pDepthStencilView = nullptr;
+//se igualan las variables que necesitamos
+ID3D11DepthStencilView* m_pDepthStencilView = nullptr;
 
 };
